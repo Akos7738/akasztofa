@@ -1,4 +1,5 @@
 import random
+from hangmanpics import HANGMANPICS
 
 def randomGen() -> str:
     wordList = ["elkelkáposztásítottalanítottátok", "megszentségteleníthetetlenségeskedéseitekért", "alma", "körte", "barack", "szilva", "narancs", "eper", "citrom", "mandula", "datolya", "eperfa"]
@@ -10,28 +11,30 @@ word = randomGen()
 wordTemplate = list()
 for i in range(len(word)):
     wordTemplate.append("_")
-        
-print(word)
-print("\nTaláld ki a megadott szót! 10 rossz válasz után vége. (kis betűket várok.)")
+
+
+print("\nTaláld ki a megadott szót! 10 rossz válasz után vége.")
 
 print(" ".join(wordTemplate))
 
 while "".join(wordTemplate) != word:
     print()
-    tip = input("Az ön tipje: ")
+    tips = input("Az ön tipje: ").lower()
     print()
 
-    if tip not in word:
-        count -= 1
-        if count != 0:
-            print(f"Pórbálkozz újra. Még {count}x hibázhatsz.")
+    for tip in tips:
+        if tip not in word:
+            print(HANGMANPICS[len(HANGMANPICS)-count])
+            count -= 1
+            if count != 0:
+                print(f"Pórbálkozz újra. Még {count}x hibázhatsz.")
+            else:
+                print(f"A megoldás: {word}\nFelakasztottak!")
+                exit()
         else:
-            print(f"A megoldás: {word}\nFelakasztottak!")
-            exit()
-    else:
-        for i in range(len(word)):
-            if word[i] == tip:
-                wordTemplate[i] = tip
+            for i in range(len(word)):
+                if word[i] == tip:
+                    wordTemplate[i] = tip
 
     print(" ".join(wordTemplate))
 if count > 0:
