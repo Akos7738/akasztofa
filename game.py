@@ -1,11 +1,8 @@
 import random
 from hangmanpics import HANGMANPICS
+from words import randomGen
 
-def randomGen() -> str:
-    wordList = ["elkelkáposztásítottalanítottátok", "megszentségteleníthetetlenségeskedéseitekért", "alma", "körte", "barack", "szilva", "narancs", "eper", "citrom", "mandula", "datolya", "eperfa"]
-    return random.choice(wordList)
-
-count = 10
+lives = 10
 word = randomGen()
 used = []
 
@@ -15,7 +12,7 @@ for i in range(len(word)):
 
 
 print("\nTaláld ki a megadott szót! 10 rossz válasz után vége.")
-
+print(word)
 print(" ".join(wordTemplate))
 
 while "".join(wordTemplate) != word:
@@ -27,10 +24,10 @@ while "".join(wordTemplate) != word:
         if tip not in used:
             used.append(tip)
             if tip not in word:
-                print(HANGMANPICS[len(HANGMANPICS)-count])
-                count -= 1
-                if count != 0:
-                    print(f"Pórbálkozz újra. Még {count}x hibázhatsz.")
+                print(HANGMANPICS[len(HANGMANPICS) - lives])
+                lives -= 1
+                if lives != 0:
+                    print(f"Pórbálkozz újra. Még {lives}x hibázhatsz.")
                 else:
                     print(f"A megoldás: {word}\nFelakasztottak!")
                     exit()
@@ -48,5 +45,19 @@ while "".join(wordTemplate) != word:
         print("Felhasznált betűk:", ", ".join(used))
         print()
     
-if count > 0:
-    print(f"Ügyes vagy, a megfejtés: {word}\nHibák száma: {10-count}")
+if lives > 0:
+    points = 10 - lives
+    
+    print(f"Ügyes vagy, a megfejtés: {word}\nHibák száma: {points}\n{len(used)} betűt használtál.")
+    
+    if points == 0:
+        print("\nGyémánt érmet kaptál!")
+    elif points in range(1, 4):
+        print("\nArany érmet kaptál!")
+    elif points in range(4, 7):
+        print("\nEzüst érmet kaptál!")
+    elif points in range(7, 10):
+        print("\nBronz érmet kaptál!")
+
+input("nyomj ENTER - t a kilépéshez")
+
