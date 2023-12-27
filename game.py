@@ -23,23 +23,23 @@ while "".join(wordTemplate) != word:
     tips = input("Az ön tipje: ").lower()
     print()
 
-    for i in tips:
-        if i not in used:
-            used.append(i)
-        
     for tip in tips:
-        if tip not in word:
-            print(HANGMANPICS[len(HANGMANPICS)-count])
-            count -= 1
-            if count != 0:
-                print(f"Pórbálkozz újra. Még {count}x hibázhatsz.")
+        if tip not in used:
+            used.append(tip)
+            if tip not in word:
+                print(HANGMANPICS[len(HANGMANPICS)-count])
+                count -= 1
+                if count != 0:
+                    print(f"Pórbálkozz újra. Még {count}x hibázhatsz.")
+                else:
+                    print(f"A megoldás: {word}\nFelakasztottak!")
+                    exit()
             else:
-                print(f"A megoldás: {word}\nFelakasztottak!")
-                exit()
+                for i in range(len(word)):
+                    if word[i] == tip:
+                        wordTemplate[i] = tip
         else:
-            for i in range(len(word)):
-                if word[i] == tip:
-                    wordTemplate[i] = tip
+            print("Ezt már próbáltad!")
 
     print(" ".join(wordTemplate))
     
