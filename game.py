@@ -7,6 +7,7 @@ def randomGen() -> str:
 
 count = 10
 word = randomGen()
+used = []
 
 wordTemplate = list()
 for i in range(len(word)):
@@ -22,6 +23,10 @@ while "".join(wordTemplate) != word:
     tips = input("Az ön tipje: ").lower()
     print()
 
+    for i in tips:
+        if i not in used:
+            used.append(i)
+        
     for tip in tips:
         if tip not in word:
             print(HANGMANPICS[len(HANGMANPICS)-count])
@@ -37,5 +42,11 @@ while "".join(wordTemplate) != word:
                     wordTemplate[i] = tip
 
     print(" ".join(wordTemplate))
+    
+    if used !=[]:
+        print()
+        print("Felhasznált betűk:", ", ".join(used))
+        print()
+    
 if count > 0:
     print(f"Ügyes vagy, a megfejtés: {word}\nHibák száma: {10-count}")
