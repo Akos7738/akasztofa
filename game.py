@@ -51,13 +51,13 @@ if lives > 0:
     print(f"Ügyes vagy, a megfejtés: {word}\nHibák száma: {points}\n{len(used)} betűt használtál.")
     
     if points == 0:
-        print("\nGyémánt érmet kaptál!")
-    elif points in range(1, 4):
         print("\nArany érmet kaptál!")
-    elif points in range(4, 7):
+    elif points in range(1, 4):
         print("\nEzüst érmet kaptál!")
-    elif points in range(7, 10):
+    elif points in range(4, 7):
         print("\nBronz érmet kaptál!")
+    elif points in range(7, 10):
+        print("\nNem  kaptál érmet!")
 
 input("nyomj ENTER - t a kilépéshez")
 
