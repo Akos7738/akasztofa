@@ -60,4 +60,3 @@ if lives > 0:
         print("\nNem  kaptál érmet!")
 
 input("nyomj ENTER - t a kilépéshez")
-
