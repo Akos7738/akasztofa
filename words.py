@@ -20,4 +20,3 @@ def randomGen() -> str:
                 words.append(w)
 #print(words)
     return(random.choice(words))
-
