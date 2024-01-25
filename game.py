@@ -3,7 +3,7 @@ from hangmanpics import HANGMANPICS
 from words import randomGen
 
 lives = 10
-word = randomGen()
+word = randomGen().lower()
 used = []
 
 wordTemplate = list()
